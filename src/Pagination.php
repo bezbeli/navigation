@@ -30,7 +30,7 @@ class Pagination
             global $wp_query, $paged;
         } else {
             $wp_query = $query;
-            $paged = $query->get_query_var('paged');
+            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
         }
         // How much pages do we have?
         $max_page = $wp_query->max_num_pages;
