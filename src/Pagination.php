@@ -24,8 +24,14 @@ class Pagination
      *                    previous_posts_link(' « '); - returns the Previous page link
      *                    next_posts_link(' » '); - returns the Next page link
      */
-    public function get($range = 3, $classes = 'pagination', $wp_query, $paged)
+    public function get($range = 3, $classes = 'pagination', $query)
     {
+        if (!$query) {
+            global $wp_query, $paged;
+        } else {
+            $wp_query = $query;
+            $paged = $query->get_query_var('paged');
+        }
         // How much pages do we have?
         $max_page = $wp_query->max_num_pages;
 
